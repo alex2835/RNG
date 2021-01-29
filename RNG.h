@@ -56,30 +56,30 @@ public:
         Right boundary is not included
     */
     template <typename T>
-	T Get(const T& min_value = std::numeric_limits<T>::min(),
+    T Get(const T& min_value = std::numeric_limits<T>::min(),
           const T& max_value = std::numeric_limits<T>::max())
-	{
+    {
         // Integral type
         if constexpr (std::is_integral_v<T>)
         {
-            T range = max_value - min_value;
-            if constexpr (std::is_signed_v<T>)
-            {
-                range = std::abs(range);
-            }
-		    T rand = GetRandomUint64() & std::numeric_limits<T>::max();
-		    return rand % range + min_value;
-		}
+        T range = max_value - min_value;
+        if constexpr (std::is_signed_v<T>)
+        {
+        	range = std::abs(range);
+        }
+        	T rand = GetRandomUint64() & std::numeric_limits<T>::max();
+        	return rand % range + min_value;
+        }
         // Floating point type
         else if constexpr (std::is_floating_point_v<T>)
         {
-            T range = std::abs(max_value - min_value);
-            return GetRandomFloatType<T>() * range + min_value;
+    	    T range = std::abs(max_value - min_value);
+    	    return GetRandomFloatType<T>() * range + min_value;
         }
         else {
-            static_assert(false);
+        	static_assert(false);
         }
-	}
+    }
 
 
 private:
