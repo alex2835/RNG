@@ -42,8 +42,6 @@ public:
         }
     }
 
-	RNG(RNG const&) = delete;
-
     void SetSeed(const std::array<uint64_t, 16> &seed)
     {
         mState = seed;
