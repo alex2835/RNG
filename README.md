@@ -1,5 +1,7 @@
 ###### RNG
 
+C++ 20
+
 ```c++
 
 RNG random;
