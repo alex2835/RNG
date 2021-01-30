@@ -1,3 +1,4 @@
+#pragma once
 
 #include <random>
 #include <array>
@@ -14,7 +15,7 @@ class RNG
 	std::random_device mRandomDevice;
 
 public:
-	RNG(const std::array<uint64_t, 16>& seed)
+    RNG(const std::array<uint64_t, 16>& seed)
         : mState(seed),
           mPosition(0)
     {}
@@ -62,11 +63,11 @@ public:
         // Integral type
         if constexpr (std::is_integral_v<T>)
         {
-        T range = max_value - min_value;
-        if constexpr (std::is_signed_v<T>)
-        {
-        	range = std::abs(range);
-        }
+            T range = max_value - min_value;
+            if constexpr (std::is_signed_v<T>)
+            {
+            	range = std::abs(range);
+            }
         	T rand = GetRandomUint64() & std::numeric_limits<T>::max();
         	return rand % range + min_value;
         }
@@ -81,9 +82,7 @@ public:
         }
     }
 
-
 private:
-
     uint64_t GetRandomUint64()
     {
         return xorshift1024();
